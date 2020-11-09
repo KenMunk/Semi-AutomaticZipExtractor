@@ -3,7 +3,7 @@
 
 
 Write-Output "Welcome to the batch extractor\n\n";
-Write-Output -NoNewLine "Would you like to extract all adjacent files? "
+Write-Output -NoNewLine "Would you like to extract all adjacent files with prompting? "
 $willConfirm = Read-Host "( [N] / Y )"
 
 
