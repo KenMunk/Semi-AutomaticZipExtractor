@@ -12,5 +12,5 @@ for([int]$branch = 1; $branch -lt $scriptPathLength; $branch++){
 Set-Alias -Option AllScope -Name BatchExtract -Value "$scriptLocation\BatchExtract.bat" -PassThru -Force
 
 $originalPath = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH).path
-$updatedPath = "$originalPath;$scriptLocation\BatchExtract.exe"
+$updatedPath = "$originalPath;$scriptLocation\BatchExtract.bat;$scriptLocation\7z1900-extra"
 Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH -Value $updatedPath -Force 

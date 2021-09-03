@@ -35,22 +35,37 @@ function unpack{
 
     Write-Host $fileType
 
-    Switch($fileType){
+    Switch($fileType.ToLower()){
         "zip"
         {
             Write-Host "zip file detected"
+            Break
         }
         "7z"
         {
             Write-Host "7z file detected"
+            Break
         }
         "rar"
         {
             Write-Host "rar, a file detected"
+            Break
         }
         "tar"
         {
             Write-Host "tar file detected"
+            Break
+        }
+        "iso"{
+            Break
+        }
+        "wim"
+        {
+            Break
+        }
+        "img"
+        {
+            Break
         }
         Default
         {
@@ -59,6 +74,43 @@ function unpack{
     }
 
 
+}
+
+function extract {
+    param ( [string] $file = "", [Bool] $confirm = 0)
+
+    if($confirm){
+        
+        $confirmed = 0
+        
+        DO{
+            
+            $response = Read-Host "$file could potentially be a huge file, are you sure you want to unpack this? [yes/no]"
+            switch($response.ToLower()){
+
+                "yes"
+                {
+                    $confirmed += 1
+                    Break
+                }
+                "no"
+                {
+                    return
+                }
+                Default
+                {
+                    #nothing, keep trying
+                }
+
+            }
+
+
+        }while($confirmed -eq 0)
+
+        
+
+    }
+    
 }
 
 $scriptLocationRaw = $MyInvocation.MyCommand.Definition.Split("\")
